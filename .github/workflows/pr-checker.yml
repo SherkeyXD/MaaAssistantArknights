@@ -30,7 +30,7 @@ jobs:
 
             if (invalidCommits.length > 0) {
               const invalidCommitNames = invalidCommits.map(commit => commit.commit.message);
-              const invalidCommitInfoList = invalidCommits.map(commit => `- ${commit.commit.message} \`[${commit.sha.substring(0, 7)}](${commit.html_url})\``).join("\n");
+              const invalidCommitInfoList = invalidCommits.map(commit => `- ${commit.commit.message} [\`${commit.sha.substring(0, 7)}\`](${commit.html_url})`).join("\n");
 
               github.rest.issues.createComment({
                 owner: context.repo.owner,
