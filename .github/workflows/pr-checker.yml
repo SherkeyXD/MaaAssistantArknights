@@ -9,7 +9,6 @@ permissions:
 
 jobs:
   check_commit_name_in_pr:
-    if: github.head_ref != 'dev'
     runs-on: ubuntu-latest
     steps:
       - name: Check Commits
@@ -41,3 +40,11 @@ jobs:
 
               core.setFailed(`Invalid commit(s) found: ${invalidCommitNames.join(", ")}`);
             }
+      
+      - name: Test
+        run: |
+          echo "github.head_ref: ${{ github.head_ref }}"
+          echo "github.base_ref: ${{ github.base_ref }}"
+          echo "github.event.pull_request.head.ref: ${{ github.event.pull_request.head.ref }}"
+          echo "github.event.pull_request.base.ref: ${{ github.event.pull_request.base.ref }}"
+          
