@@ -30,13 +30,13 @@ jobs:
 
             if (invalidCommits.length > 0) {
               const invalidCommitNames = invalidCommits.map(commit => commit.commit.message);
-              const invalidCommitInfoList = invalidCommits.map(commit => `- ${commit.commit.message} [\`${commit.sha.substring(0, 7)}\`](${commit.html_url})`).join("\n");
+              const invalidCommitInfoList = invalidCommits.map(commit => `<details><summary><a href="${commit.html_url}">${commit.sha.substring(0, 7)}</a></summary>${commit.commit.message}</details>`).join("\n");
 
               github.rest.issues.createComment({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 issue_number: context.payload.pull_request.number,
-                body: `Invalid commit(s) found:\n\n${invalidCommitInfoList}\nPlease follow the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) format.`
+                body: `## ⚠️ Invalid commit(s) found\n\n${invalidCommitInfoList}\n---\nPlease follow the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) format.`
               });
 
               core.setFailed(`Invalid commit(s) found: ${invalidCommitNames.join(", ")}`);
