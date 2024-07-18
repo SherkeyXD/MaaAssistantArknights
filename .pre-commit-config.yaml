@@ -1,0 +1,11 @@
+default_install_hook_types: [pre-commit, prepare-commit-msg]
+ci:
+  autofix_commit_msg: "chore: Auto update by pre-commit hooks [skip changelog]"
+  autofix_prs: true
+repos:
+  - repo: https://github.com/pre-commit/mirrors-prettier
+    rev: v4.0.0-alpha.8
+    hooks:
+      - id: prettier
+        types_or: [yaml, json]
+        stages: [commit]
