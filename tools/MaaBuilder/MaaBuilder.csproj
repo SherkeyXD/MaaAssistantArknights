@@ -12,6 +12,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.Identity.Client" Version="4.60.4" />
     <PackageReference Include="Nuke.Common" Version="7.0.6" />
   </ItemGroup>
 
